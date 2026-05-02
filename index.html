@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Horizon – ONG pour les jeunes et les femmes</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #F8F3F7;  /* couleur logo doux */
+            color: #1A1C19;              /* presque noir */
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* couleurs du logo */
+        :root {
+            --blanc-casse: #F8F3F7;
+            --noir-vert: #1A1C19;
+            --orange-prime: #E66021;
+            --orange-terre: #C36833;
+            --gris-moyen: #535552;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--orange-prime);
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* header */
+        header {
+            background-color: var(--blanc-casse);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(83,85,82,0.1);
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--noir-vert);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--orange-prime);
+            font-weight: 300;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--noir-vert);
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+        .nav-menu a:hover {
+            color: var(--orange-prime);
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--noir-vert);
+            cursor: pointer;
+        }
+
+        /* hero */
+        .hero {
+            background: linear-gradient(130deg, rgba(26,28,25,0.9) 0%, rgba(230,96,33,0.85) 100%), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop') center/cover no-repeat;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        .hero-content {
+            max-width: 750px;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--orange-prime);
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .btn:hover {
+            background: transparent;
+            border-color: white;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* sections générales */
+        section {
+            padding: 5rem 0;
+        }
+        .section-light {
+            background-color: var(--blanc-casse);
+        }
+        .section-dark {
+            background-color: rgba(230,96,33,0.02);
+        }
+
+        /* cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.3s;
+            border: 1px solid rgba(83,85,82,0.1);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(230,96,33,0.1);
+            border-color: var(--orange-prime);
+        }
+        .card i {
+            font-size: 2.5rem;
+            color: var(--orange-prime);
+            margin-bottom: 1.2rem;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .card p, .card ul {
+            color: var(--gris-moyen);
+            font-size: 0.95rem;
+        }
+        .card ul {
+            list-style: none;
+            margin-top: 0.8rem;
+        }
+        .card li {
+            padding: 0.2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .card li i {
+            font-size: 0.8rem;
+            color: var(--orange-terre);
+        }
+
+        /* galerie */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 220px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.4s;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* actualités (news) */
+        .news-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            border: 1px solid rgba(83,85,82,0.1);
+        }
+        .news-date {
+            color: var(--orange-prime);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* partenaires */
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .partner-logo {
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            font-weight: 600;
+            color: var(--noir-vert);
+            border: 1px solid rgba(230,96,33,0.2);
+        }
+
+        /* contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .info-item i {
+            font-size: 1.8rem;
+            color: var(--orange-prime);
+            width: 40px;
+        }
+        .info-item p {
+            font-size: 1.1rem;
+        }
+        .facebook-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #1877f2;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            width: fit-content;
+        }
+        .facebook-link:hover {
+            background: #0f5ecc;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid rgba(83,85,82,0.2);
+            background: white;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        textarea {
+            border-radius: 30px;
+            resize: vertical;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--orange-prime);
+            box-shadow: 0 0 0 3px rgba(230,96,33,0.1);
+        }
+        .btn-submit {
+            background: var(--orange-prime);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            background: var(--orange-terre);
+        }
+
+        footer {
+            background: var(--noir-vert);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .footer-links a {
+            color: var(--blanc-casse);
+            margin: 0 0.8rem;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--blanc-casse);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: 0.4s;
+                pointer-events: none;
+                border-bottom: 2px solid var(--orange-prime);
+            }
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <div class="logo">
+                <a href="index.html">Impact <span>Horizon</span></a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#accueil">Accueil</a>
+                <a href="#apropos">À propos</a>
+                <a href="#programmes">Programmes</a>
+                <a href="#galerie">Galerie</a>
+                <a href="#actualites">Actualités</a>
+                <a href="#partenaires">Partenaires</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ACCUEIL hero -->
+        <section id="accueil" class="hero">
+            <div class="container hero-content">
+                <h1>Autonomiser les jeunes et les femmes pour un avenir durable</h1>
+                <p>Formation professionnelle, entrepreneuriat, insertion – Impact Horizon construit l'autonomie au Bénin.</p>
+                <a href="#programmes" class="btn">Découvrir nos programmes</a>
+            </div>
+        </section>
+
+        <!-- À PROPOS (mise à jour avec la taille de l'équipe) -->
+        <section id="apropos" class="section-light">
+            <div class="container">
+                <h2>À propos d'Impact Horizon</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem;">
+                    <div>
+                        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;"><strong>ONG engagée</strong> dans le développement socio-économique durable au Bénin – Cotonou & Abomey-Calavi.</p>
+                        <p>Nous facilitons l’accès des jeunes (14-35 ans) et des femmes à des compétences pratiques et entrepreneuriales pour favoriser l’insertion professionnelle et l’autonomie économique.</p>
+                        <p style="margin-top: 1.5rem; font-style: italic; color: var(--gris-moyen);">Une équipe de 2 à 10 personnes, proche du terrain et entièrement dédiée à sa mission.</p>
+                    </div>
+                    <div style="background: rgba(230,96,33,0.03); padding: 2rem; border-radius: 30px;">
+                        <h3 style="color: var(--orange-prime); margin-bottom: 1rem;">Mission & Vision</h3>
+                        <p><strong>Mission :</strong> Contribuer au développement socio-économique durable en facilitant l’accès à des compétences pratiques.</p>
+                        <p style="margin-top: 1rem;"><strong>Vision :</strong> Une société où jeunes et femmes deviennent acteurs du développement.</p>
+                    </div>
+                </div>
+                <div style="margin-top: 3rem;">
+                    <h3>Nos valeurs</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 1.5rem;">
+                        <span style="background: white; padding: 0.5rem 1.5rem; border-radius: 40px; border-left: 4px solid var(--orange-prime);">Engagement social</span>
+                        <span style="background: white; padding: 0.5rem 1.5rem; border-radius: 40px; border-left: 4px solid var(--orange-prime);">Autonomisation</span>
+                        <span style="background: white; padding: 0.5rem 1.5rem; border-radius: 40px; border-left: 4px solid var(--orange-prime);">Innovation</span>
+                        <span style="background: white; padding: 0.5rem 1.5rem; border-radius: 40px; border-left: 4px solid var(--orange-prime);">Solidarité</span>
+                        <span style="background: white; padding: 0.5rem 1.5rem; border-radius: 40px; border-left: 4px solid var(--orange-prime);">Inclusion</span>
+                        <span style="background: white; padding: 0.5rem 1.5rem; border-radius: 40px; border-left: 4px solid var(--orange-prime);">Développement durable</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAMMES -->
+        <section id="programmes" class="section-dark">
+            <div class="container">
+                <h2>Nos programmes & activités</h2>
+                <div class="card-grid">
+                    <!-- Formation pro -->
+                    <div class="card">
+                        <i class="fas fa-hammer"></i>
+                        <h3>Formation professionnelle</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Peinture bâtiment</li>
+                            <li><i class="fas fa-check-circle"></i> Électricité</li>
+                            <li><i class="fas fa-check-circle"></i> Maintenance</li>
+                            <li><i class="fas fa-check-circle"></i> Communication</li>
+                            <li><i class="fas fa-check-circle"></i> Métiers techniques</li>
+                        </ul>
+                    </div>
+                    <!-- Ateliers & séminaires -->
+                    <div class="card">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3>Ateliers & séminaires</h3>
+                        <p>Sessions pratiques et intensives pour renforcer les compétences de chacun.</p>
+                    </div>
+                    <!-- Accompagnement entrepreneurial -->
+                    <div class="card">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Accompagnement entrepreneurial</h3>
+                        <p>Appui à la création et au développement de micro-entreprises pour les jeunes.</p>
+                    </div>
+                    <!-- Autonomisation des femmes -->
+                    <div class="card">
+                        <i class="fas fa-female"></i>
+                        <h3>Autonomisation des femmes</h3>
+                        <p>Activités génératrices de revenus, mentorat et microcrédit.</p>
+                    </div>
+                    <!-- CAMP MÉTIERS-VACANCES -->
+                    <div class="card">
+                        <i class="fas fa-campground"></i>
+                        <h3>CAMP MÉTIERS-VACANCES (CMV)</h3>
+                        <p>Pendant les vacances, les jeunes découvrent et apprennent différents métiers.</p>
+                    </div>
+                    <!-- Insertion pro / sensibilisation (ajout) -->
+                    <div class="card">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h3>Insertion & sensibilisation</h3>
+                        <p>Accompagnement vers l’emploi et actions communautaires pour le développement durable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERIE -->
+        <section id="galerie" class="section-light">
+            <div class="container">
+                <h2>Moments clés</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1557425955-df376b5903c8?q=80&w=1974&auto=format&fit=crop" alt="Formation peinture"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?q=80&w=2070&auto=format&fit=crop" alt="Atelier électricité"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" alt="Femmes en formation"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" alt="Camp métiers vacances"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop" alt="Groupe de jeunes"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1593113598335-cd288d649433?q=80&w=2070&auto=format&fit=crop" alt="Séminaire"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACTUALITÉS -->
+        <section id="actualites" class="section-dark">
+            <div class="container">
+                <h2>Actualités & annonces</h2>
+                <div class="card-grid">
+                    <div class="news-card">
+                        <span class="news-date"><i class="far fa-calendar"></i> 15 mars 2026</span>
+                        <h3>Inscriptions Camp Métiers-Vacances 2026</h3>
+                        <p>Les inscriptions pour l'édition 2026 sont ouvertes ! Peinture, électricité, maintenance…</p>
+                    </div>
+                    <div class="news-card">
+                        <span class="news-date"><i class="far fa-calendar"></i> 28 février 2026</span>
+                        <h3>Atelier entrepreneuriat femmes</h3>
+                        <p>Le 10 avril, atelier sur les AGR à Abomey-Calavi. Inscription gratuite.</p>
+                    </div>
+                    <div class="news-card">
+                        <span class="news-date"><i class="far fa-calendar"></i> 2 janvier 2026</span>
+                        <h3>Partenariat avec un fonds de soutien</h3>
+                        <p>Nouveau bailleur pour l’autonomisation des jeunes. Plus d’infos bientôt.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTENAIRES -->
+        <section id="partenaires" class="section-light">
+            <div class="container">
+                <h2>Ils nous soutiennent</h2>
+                <div class="partners-grid">
+                    <span class="partner-logo">UNICEF Bénin</span>
+                    <span class="partner-logo">Ambassade de France</span>
+                    <span class="partner-logo">ONG Plan</span>
+                    <span class="partner-logo">Fonds EDEN</span>
+                    <span class="partner-logo">Mairie Cotonou</span>
+                    <span class="partner-logo">UE Bénin</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT (coordonnées réelles) -->
+        <section id="contact" class="section-dark">
+            <div class="container">
+                <h2>Contactez-nous</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Rue SBEE Zogbadje<br>Abomey-Calavi, Bénin</p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>contact@impacthorizon.bj</p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <p>+229 01 40 54 65 25<br>+229 01 51 65 16 78</p>
+                        </div>
+                        <a href="https://www.facebook.com/ImpactHorizonOfficiel" target="_blank" class="facebook-link"><i class="fab fa-facebook-f"></i> ImpactHorizonOfficiel</a>
+                    </div>
+                    <div>
+                        <form action="#" method="post">
+                            <div class="form-group"><input type="text" placeholder="Votre nom" required></div>
+                            <div class="form-group"><input type="email" placeholder="Email" required></div>
+                            <div class="form-group"><input type="text" placeholder="Sujet"></div>
+                            <div class="form-group"><textarea rows="5" placeholder="Votre message..."></textarea></div>
+                            <button type="submit" class="btn-submit">Envoyer le message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Impact Horizon – Tous droits réservés</p>
+            <div class="footer-links" style="margin-top: 1rem;">
+                <a href="#accueil">Accueil</a> | <a href="#apropos">À propos</a> | <a href="#programmes">Programmes</a> | <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- petit script pour menu mobile et ancres -->
+    <script>
+        const toggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('navMenu');
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            // changer icône
+            const icon = toggle.querySelector('i');
+            if (nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // fermer le menu au clic sur un lien (mobile)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                nav.classList.remove('active');
+                const icon = toggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // smooth scroll pour les ancres (avec prise en compte du header fixe)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === "#") return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
